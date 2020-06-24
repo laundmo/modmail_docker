@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+    modmail:
+        container_name: modmail
+        image: modmail
+        environment:
+          - TOKEN={{ cookiecutter.bot_token }}
+          - LOG_URL={{ cookiecutter.fqdn }}
+          - GUILD_ID={{ cookiecutter.guild_id }}
+          - OWNERS={{ cookiecutter.owner_id }}
+          - MONGO_URI=mongodb://modmail:{{ cookiecutter.new_mongodb_password}}@mongo
+        networks:
+          - mynet
+
+
+    logviewer:
+        container_name: logview
+        image: logview
+        environment:
+          - MONGO_URI=mongodb://modmail:{{ cookiecutter.new_mongodb_password}}@mongo
+        ports:
+          - {{ cookiecutter.local_port_for_logview }}:8000
+        networks:
+          - mynet
+
+    mongo:
+        container_name: mongo
+        image: mongo:latest
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: modmail
+            MONGO_INITDB_ROOT_PASSWORD: {{ cookiecutter.new_mongodb_password}}
+        volumes:
+          - /srv/modmail_docker/mongodb_data:/data/db
+        networks:
+          - mynet
+
+networks:
+  mynet:
+    driver: bridge
