@@ -8,5 +8,4 @@ cd logviewer
 git checkout patch-1
 docker build . --tag=logviewer
 cd ..
-docker-compose enable
 docker-compose up -d
