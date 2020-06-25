@@ -6,4 +6,6 @@ git clone https://github.com/laundmo/logviewer
 cd logviewer
 git checkout patch-1
 docker build . --tag=logviewer
-cd ..
+cd ../{{ cookiecutter.project_slug }}
+docker-compose enable
+docker-compose up -d
