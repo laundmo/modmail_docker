@@ -5,17 +5,17 @@ services:
         image: modmail
         environment:
           - TOKEN={{ cookiecutter.bot_token }}
-          - LOG_URL={{ cookiecutter.fqdn }}
+          - LOG_URL={{ cookiecutter.domain_or_ip_on_which_the_logviewer_will_be_avaliable }}
           - GUILD_ID={{ cookiecutter.guild_id }}
-          - OWNERS={{ cookiecutter.owner_id }}
+          - OWNERS={{ cookiecutter.comma_seperated_owner_ids }}
           - MONGO_URI=mongodb://modmail:{{ cookiecutter.new_mongodb_password}}@mongo
         networks:
           - mynet
 
 
     logviewer:
-        container_name: logview
-        image: logview
+        container_name: logviewer
+        image: logviewer
         environment:
           - MONGO_URI=mongodb://modmail:{{ cookiecutter.new_mongodb_password}}@mongo
         ports:
@@ -27,8 +27,8 @@ services:
         container_name: mongo
         image: mongo:latest
         environment:
-            MONGO_INITDB_ROOT_USERNAME: modmail
-            MONGO_INITDB_ROOT_PASSWORD: {{ cookiecutter.new_mongodb_password}}
+          - MONGO_INITDB_ROOT_USERNAME=modmail
+          - MONGO_INITDB_ROOT_PASSWORD={{ cookiecutter.new_mongodb_password }}
         volumes:
           - /srv/modmail_docker/mongodb_data:/data/db
         networks:
