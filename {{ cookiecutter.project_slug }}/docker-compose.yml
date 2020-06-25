@@ -30,7 +30,7 @@ services:
           - MONGO_INITDB_ROOT_USERNAME=modmail
           - MONGO_INITDB_ROOT_PASSWORD={{ cookiecutter.new_mongodb_password }}
         volumes:
-          - /srv/modmail_docker/mongodb_data:/data/db
+          - ./mongodb_data:/data/db
         networks:
           - mynet
 
