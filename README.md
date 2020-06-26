@@ -5,7 +5,9 @@ docker_compose for self-contained kyb3r/modmail
 
 linux, [docker](https://docs.docker.com/engine/install/), [docker-compose](https://docs.docker.com/compose/install/), [cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/installation.html)
 
-then run `sudo cookiecutter https://github.com/laundmo/modmail_docker` and make sure to provide all things it asks for
+go to a place where all the data can go and run `sudo cookiecutter https://github.com/laundmo/modmail_docker` and make sure to provide all things it asks for
+
+if you ever want to stop or restart the bot, `cd` into the folder it created and run the command `docker-compose down` for shutting it down and `docker-compose up -d` for starting it
 
 ## variable explanation
 
