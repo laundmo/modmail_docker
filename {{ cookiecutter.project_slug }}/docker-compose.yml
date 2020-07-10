@@ -2,7 +2,7 @@ version: '3.3'
 services:
     modmail:
         container_name: modmail
-        build: ../modmail/
+        build: ./modmail/
         image: modmail
         environment:
           - TOKEN={{ cookiecutter.bot_token }}
@@ -16,7 +16,7 @@ services:
 
     logviewer:
         container_name: logviewer
-        build: ../logviewer/
+        build: ./logviewer/
         image: logviewer
         environment:
           - MONGO_URI=mongodb://modmail:{{ cookiecutter.new_mongodb_password}}@mongo
